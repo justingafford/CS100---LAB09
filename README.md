@@ -63,6 +63,8 @@ The above iterators are capable of traversing every type of expression tree clas
 
 You will then need to override this function in all classes which inherit from `Base` (which represents all the expression tree classes). By overriding this function in all the subclasses of `Base` you are tieing that particular for of iteration to that particular class, and its expected that the client will always perform an iteration over an element in an express tree by asking the particular element for an iterator directly. This is helpful in our system, as the accessors we added to the `Base` class earlier return `nullptr` in many cases, and having to constantly screen for the return of these `nullptr` would be annoying.
 
+**Note:** depending on your particular implementation the addition of the `Iterator` class into your `Base` class derivatives may create a new circular dependency. If you find that after the additions you have compilation errors because of unknown classes, this is likely the issue and you should take the same steps you did in previous labs to remedy them.
+
 ## The Preorder Iterator
 
 Finally, you will need to create an iterator capable of traversing each of the expression tree objects. In this case you will be creating an iterator capable of performing a preorder traversal named `PreorderIterator`, which there are some details about in the lecture slides. The `PreorderIterator` has an additional `stack<Iterator*>` internal data member which is used to keep track of the expression tree traversal. The rest of the `PreorderIterator` fucntions should be implemented as follows.
