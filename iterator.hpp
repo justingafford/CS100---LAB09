@@ -25,7 +25,7 @@ class Iterator
 class BinaryIterator : public Iterator 
 {
     public:
-        Iterator(Base* ptr);
+        Iterator(Base* ptr) : Iterator(ptr){};
         void first();
         void next();
         bool is_done();
@@ -35,7 +35,7 @@ class BinaryIterator : public Iterator
 class UnaryIterator : public Iterator 
 {
     public:
-        Iterator(Base* ptr);
+        Iterator(Base* ptr) : Iterator(ptr){};
         void first();
         void next();
         bool is_done();
@@ -45,7 +45,7 @@ class UnaryIterator : public Iterator
 class NullIterator : public Iterator 
 {
     public:
-        Iterator(Base* ptr);
+        Iterator(Base* ptr) : Iterator(ptr){};
         void first();
         void next();
         bool is_done();
