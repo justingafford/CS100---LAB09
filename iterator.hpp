@@ -5,7 +5,8 @@ class Iterator
 {
     protected:
         Base* self_ptr;
-
+        Base* curr;
+    
     public:
         Iterator(Base* ptr) { this->self_ptr = ptr; }
 
