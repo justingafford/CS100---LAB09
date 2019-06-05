@@ -1,4 +1,8 @@
-class Iterator {
+#ifndef ITERATOR_H
+#define ITERATOR_H
+
+class Iterator 
+{
     protected:
         Base* self_ptr;
 
@@ -17,3 +21,35 @@ class Iterator {
         /* Return the element the iterator is currently at */
         virtual Base* current() = 0;
 };
+
+class BinaryIterator : public Iterator 
+{
+    public:
+        Iterator(Base* ptr);
+        void first();
+        void next();
+        bool is_done();
+        Base* current();
+};
+
+class UnaryIterator : public Iterator 
+{
+    public:
+        Iterator(Base* ptr);
+        void first();
+        void next();
+        bool is_done();
+        Base* current();
+};
+
+class NullIterator : public Iterator 
+{
+    public:
+        Iterator(Base* ptr);
+        void first();
+        void next();
+        bool is_done();
+        Base* current();
+};
+
+#endif
