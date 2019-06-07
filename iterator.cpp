@@ -1,72 +1,83 @@
-#include "iterator.hpp"
+#include "iterator.h"
+#include <iostream>
+#include <sstream>
+#include <math.h>
+#include <string>
+#include <stack>
+using namespace std;
 
-//BinaryIterator
-void BinaryIterator::first()
-{
-    this->curr = this->self_ptr->get_left();
-}
+class Base;
+
+Iterator::Iterator(Base* ptr) {this->self_ptr = ptr;}
+
+//**BinaryIterator**
+BinaryIterator::BinaryIterator(Base* ptr): Iterator(ptr) {};
+
+void BinaryIterator::first() {this->current_ptr = this->self_ptr->get_left();}
+
 void BinaryIterator::next()
 {
-    if(this->curr == this->self_ptr->get_left())
-      this->curr = this->self_ptr->get_right();
-    if(curr == self_ptr->get_right())
-      this->curr = NULL;
-}
-bool BinaryIterator::is_done()
-{ 
-    if(this->curr == NULL){
-      return true;
-    }  
-    return false;
-}
-Base* BinaryIterator::current()
-{
-    return this-> curr;
+    if(this->current_ptr == this->self_ptr->get_left())
+    {
+        this->current_ptr = this->self_ptr->get_right();
+    }
+    else if(this->current_ptr == this->self_ptr->get_right())
+    {
+        this->current_ptr = NULL;
+    }
 }
 
-//UnaryIterator
-void UnaryIterator::first()
+bool BinaryIterator::is_done()
 {
-    this -> curr = this->self_ptr->get_left();
+    if(this->current_ptr == NULL)
+    {
+        return true;
+    }
+    return false;
 }
+
+Base* BinaryIterator::current() {return this->current_ptr;}
+
+//**UnaryIterator**
+UnaryIterator::UnaryIterator(Base* ptr) : Iterator(ptr) {};
+
+void UnaryIterator::first() {this->current_ptr = this->self_ptr->get_left();}
+
 void UnaryIterator::next()
 {
-    if(this->curr == this->self_ptr->get_left())
-      this->curr = NULL;
+    if(this->current_ptr == this->self_ptr->get_left())
+    {
+        this->current_ptr = NULL;
+    }
 }
+
 bool UnaryIterator::is_done()
 {
-    if(this->curr == NULL){
-      return true;
-    }  
+    if(this->current_ptr == NULL)
+    {
+        return true;
+    }
     return false;
 }
-Base* UnaryIterator::current()
-{
-    return this-> curr;
-}
 
-//NullIterator
-void NullIterator::first()
-{
-   return;
-}
-void NullIterator::next()
-{
-   return;
-}
-bool NullIterator::is_done()
-{
-    return true;
-}
-Base* NullIterator::current() 
-{
-    return NULL;
-}
+Base* UnaryIterator::current() {return this->current_ptr;}
 
+//**NullIterator**
+NullIterator::NullIterator(Base* ptr) : Iterator(ptr) {};
+
+void NullIterator::first() {return;}
+
+void NullIterator::next() {return;}
+
+bool NullIterator::is_done() {return true;}
+
+Base* NullIterator::current() {return NULL;}
+
+//**PreOrderIterator**
 PreOrderIterator::PreOrderIterator(Base* ptr) : Iterator(ptr) {};
 
-void PreOrderIterator::first() {
+void PreOrderIterator::first()
+{
    if(!iterators.empty())
    {
        while(!iterators.empty())
@@ -80,7 +91,8 @@ void PreOrderIterator::first() {
    return;
 }
 
-void PreOrderIterator::next() {
+void PreOrderIterator::next()
+{
     Iterator* p = this->iterators.top()->current()->create_iterator();
     p->first();
     this->iterators.push(p);
@@ -94,7 +106,8 @@ void PreOrderIterator::next() {
     }
 }
 
-bool PreOrderIterator::is_done() {
+bool PreOrderIterator::is_done()
+{
    if(iterators.empty())
    {
        return true;
@@ -102,7 +115,8 @@ bool PreOrderIterator::is_done() {
    return false;
 }
 
-Base* PreOrderIterator::current() {
+Base* PreOrderIterator::current()
+{
     if(this->iterators.size() > 0)
     {
      return iterators.top()->current();
