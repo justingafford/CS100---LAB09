@@ -1,5 +1,5 @@
-#include "compositepattern.hpp"
-#include "iterator.hpp"
+#include "compositepattern.h"
+#include "iterator.h"
 #include <iostream>
 #include "gtest/gtest.h"
 
