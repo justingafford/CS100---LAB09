@@ -4,6 +4,8 @@
 #include <stack>
 using namespace std;
 
+class Base;
+
 class Iterator 
 {
     protected:

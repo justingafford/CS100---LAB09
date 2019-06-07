@@ -12,7 +12,6 @@ using namespace std;
 class Iterator;
 class NullIterator;
 class UnaryIterator;
-
 //Abstract Base Class
 class Base {
     public:
@@ -124,4 +123,5 @@ class Pow: public UnaryOperator {
 	  double evaluate();
 	  string stringify();
 };
+
 #endif

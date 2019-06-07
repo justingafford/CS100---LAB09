@@ -107,7 +107,7 @@ Base* Operator::get_left() { return left; }
 
 Base* Operator::get_right() { return right; }
 
-Iterator* Operator::create_iterator() { return new OperatorIterator(this); }
+Iterator* Operator::create_iterator() { return new BinaryIterator(this); }
 
 //**UnaryOperator Fucntion**
 UnaryOperator::UnaryOperator() : Base(){}
