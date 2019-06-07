@@ -1,104 +1,24 @@
-#include "compositepattern.hpp"
-#include "iterator.hpp"
+#include "iterator.h"
+#include "composite.h"
 #include <string>
+//**Op Class**
+Op::Op() : Base(), value(0){}
 
-using namespace std;
-
-//**Add Class Functions**
-Add::Add(Base* l1, Base* l2): L1(l1), L2(l2) {}
-
-double Add::evaluate() {
-	return L1 ->evaluate() + L2 ->evaluate();
-}
-
-string Add::stringify() {
-	string temp = L1 ->stringify() + " + " + L2 ->stringify();
-	return temp;
-}
-
-//**Sub Class Functions**
-Sub::Sub(Base* l1, Base* l2): L1(l1), L2(l2) {}
-
-double Sub::evaluate() {
-	return L1 ->evaluate() - L2 ->evaluate();
-}
-
-string Sub::stringify() {
-	string temp = L1 ->stringify() + " - " + L2 ->stringify();
-	return temp;
-}
-
-//**Div Class Functions**
-Div::Div(Base* l1, Base* l2): L1(l1), L2(l2) {}
-
-double Div::evaluate() {
-	return L1 ->evaluate() / L2 ->evaluate();
-}
-
-string Div::stringify() {
-	string temp = L1 ->stringify() + " / " + L2 ->stringify();
-	return temp;
-}
-
-//**Mult Class Functions**
-Mult::Mult(Base* l1, Base* l2): L1(l1), L2(l2) {}
-
-double Mult::evaluate() {
-	return L1 ->evaluate() * L2 ->evaluate();
-}
-
-string Mult::stringify() {
-	string temp = L1 ->stringify() + " * " + L2 ->stringify();
-	return temp;
-}
-
-//**Pow Class Functions**
-Pow::Pow(Base* l1, Base* l2): L1(l1), L2(l2) {}
-
-double Pow::evaluate() {
-	return pow(L1 -> evaluate() , L2 -> evaluate());
-}
-	
-string Pow::stringify() {
-	string temp = L1 ->stringify() + " ** " + L2 ->stringify();
-	return temp;
-}
-
-//**Op Class Functions**
-Op::Op () {
-	num = 0;
-}
-Op::Op(double  n) {
-	num = n;
-}
-double Op::evaluate() {
-	return num;
-}
-
-string Op::stringify() {
-	return to_string(num);
-}
+Op::Op(double val) : Base(), value(val){}
 
 Base* Op::get_left() { return NULL; }
 
 Base* Op::get_right() { return NULL; }
 
+string Op::stringify() {
+	return to_string(value);
+}
+
+double Op::evaluate() { return this->value; }
+
 Iterator* Op::create_iterator() { return new NullIterator(this); }
 
-//**Rand Class Functions**
-Rand::Rand() {num = rand() % 100;};
-
-double Rand::evaluate() {return num;}
-
-string Rand::stringify() {return to_string(num);}
-
-Base* Rand::get_left() { return NULL; }
-
-Base* Rand::get_right() { return NULL; }
-
-Iterator* Rand::create_iterator() { return new NullIterator(this); }
-
-//**Operator Class Function**
+//**Operator Base Class**
 Operator::Operator() : Base(){ }
 
 Operator::Operator(Base* l, Base* r) : left(l), right(r){  }
@@ -109,7 +29,7 @@ Base* Operator::get_right() { return right; }
 
 Iterator* Operator::create_iterator() { return new BinaryIterator(this); }
 
-//**UnaryOperator Fucntion**
+//**Unary Base Class**
 UnaryOperator::UnaryOperator() : Base(){}
 
 UnaryOperator::UnaryOperator(Base* c) : child(c) { }
@@ -120,13 +40,74 @@ Base* UnaryOperator::get_right() { return NULL; }
 
 Iterator* UnaryOperator::create_iterator() { return new UnaryIterator(this); }
 
-//**Root Function**
+//**Add Class**
+Add::Add() : Operator() { }
+
+Add::Add(Base* left, Base* right) : Operator(left,right) { }
+
+string Add::stringify() {
+	string temp = left ->stringify() + " + " + right ->stringify();
+	return temp;
+}
+
+double Add::evaluate() { return this->left->evaluate() + this->right->evaluate(); }
+
+//**Sub Class**
+Sub::Sub() : Operator() { }
+
+Sub::Sub(Base* left, Base* right) : Operator(left,right) { }
+
+string Sub::stringify() {
+	string temp = left ->stringify() + " - " + right ->stringify();
+	return temp;
+}
+
+double Sub::evaluate() { return this->left->evaluate() - this->right->evaluate(); }
+
+//**Mult Class**
+
+Mult::Mult() : Operator() { }
+
+Mult::Mult(Base* left, Base* right) : Operator(left,right) { }
+
+string Mult::stringify() {
+	string temp = left ->stringify() + " + " + right ->stringify();
+	return temp;
+}
+
+double Mult::evaluate() { return this->left->evaluate() * this->right->evaluate(); }
+
+
+//**Div Class**
+Div::Div() : Operator() { }
+
+Div::Div(Base* left, Base* right) : Operator(left,right) { }
+
+string Div::stringify() {
+	string temp = left ->stringify() + " / " + right ->stringify();
+	return temp;
+}
+
+double Div::evaluate() { return this->left->evaluate() / this->right->evaluate(); }
+
+//**Pow Class**
+Pow::Pow() : Operator() { }
+
+Pow::Pow(Base* left,Base* right) : Operator(left,right) { }
+
+string Pow::stringify() {
+	string temp = left ->stringify() + " ** " + right ->stringify();
+	return temp;
+}
+
+double Pow::evaluate() { return pow(this-> left  -> evaluate() , this-> right  -> evaluate()); }
+
+//**Root Class**
 Root::Root() : UnaryOperator() { }
 
 Root::Root(Base* child) : UnaryOperator(child) { }
 
 
-string Root::stringify() { return  "ROOT"; }
-
+string Root::stringify() { cout << "ROOT"; }
 double Root::evaluate() { return this->child->evaluate(); }
 
