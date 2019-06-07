@@ -1,6 +1,6 @@
 #include "compositepattern.hpp"
 #include "iterator.hpp"
-#include "#include <iostream>
+#include <iostream>
 #include "gtest/gtest.h"
 
 int main(int argc, char **argv) {
