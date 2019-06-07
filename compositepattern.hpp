@@ -124,4 +124,13 @@ class Pow: public UnaryOperator {
 	  string stringify();
 };
 
+class Root: public UnaryOperator {
+    public:
+        Root();
+        Root(Base* root);
+
+        string stringify();
+        double evaluate();
+};
+
 #endif

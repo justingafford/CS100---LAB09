@@ -120,3 +120,13 @@ Base* UnaryOperator::get_right() { return NULL; }
 
 Iterator* UnaryOperator::create_iterator() { return new UnaryIterator(this); }
 
+//**Root Function**
+Root::Root() : UnaryOperator() { }
+
+Root::Root(Base* child) : UnaryOperator(child) { }
+
+
+string Root::stringify() { return  "ROOT"; }
+
+double Root::evaluate() { return this->child->evaluate(); }
+

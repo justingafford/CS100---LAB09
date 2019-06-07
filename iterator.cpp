@@ -3,47 +3,47 @@
 //BinaryIterator
 void BinaryIterator::first()
 {
-    curr = self_ptr->get_left();
+    this->curr = this->self_ptr->get_left();
 }
 void BinaryIterator::next()
 {
-    if(curr == self_ptr->get_left())
-      curr = self_ptr->get_right();
+    if(this->curr == this->self_ptr->get_left())
+      this->curr = this->self_ptr->get_right();
     if(curr == self_ptr->get_right())
-      curr = NULL;
+      this->curr = NULL;
 }
 bool BinaryIterator::is_done()
 { 
-    if(curr == NULL){
+    if(this->curr == NULL){
       return true;
     }  
     return false;
 }
 Base* BinaryIterator::current()
 {
-    return curr;
+    return this-> curr;
 }
 
 //UnaryIterator
 void UnaryIterator::first()
 {
-    curr = self_ptr->get_left();
+    this -> curr = this->self_ptr->get_left();
 }
 void UnaryIterator::next()
 {
-    if(curr == self_ptr->get_left())
-      curr = NULL;
+    if(this->curr == this->self_ptr->get_left())
+      this->curr = NULL;
 }
 bool UnaryIterator::is_done()
 {
-    if(curr == NULL){
+    if(this->curr == NULL){
       return true;
     }  
     return false;
 }
 Base* UnaryIterator::current()
 {
-    return curr;
+    return this-> curr;
 }
 
 //NullIterator
@@ -63,6 +63,8 @@ Base* NullIterator::current()
 {
     return NULL;
 }
+
+PreOrderIterator::PreOrderIterator(Base* ptr) : Iterator(ptr) {};
 
 void PreOrderIterator::first() {
    if(!iterators.empty())
