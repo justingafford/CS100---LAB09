@@ -18,9 +18,9 @@ double Op::evaluate() { return this->value; }
 
 Iterator* Op::create_iterator() { return new NullIterator(this); }
  
-Base* Op::get_left() { return NULL; }
+Base* Rand::get_left() { return NULL; }
 
-Base* Op::get_right() { return NULL; }
+Base* Rand::get_right() { return NULL; }
 
 Rand::Rand() {num = rand() % 100;};
  
