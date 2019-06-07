@@ -1,6 +1,7 @@
 #ifndef BASE_HPP
 #define BASE_HPP
 #include <string>
+#include "iterator.h"
 class Base {
     public:
 	Base* left;
@@ -16,6 +17,7 @@ class Base {
         virtual std::string stringify() = 0;
 	virtual Base* get_left() = 0;
 	virtual Base* get_right() = 0;
+	virtual Iterator* create_iterator() = 0;
 };
 
 #endif
