@@ -48,8 +48,11 @@ class Rand : public Base
         double num;
     public:
         Rand();
+        Base* get_left();
+        Base* get_right();
         double evaluate();
         string stringify();
+        Iterator* create_iterator();
 };
 
 //Composite Base Classes
