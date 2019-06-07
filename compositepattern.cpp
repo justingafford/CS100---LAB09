@@ -1,5 +1,5 @@
 #include "iterator.h"
-#include "composite.h"
+#include "compositepattern.h"
 #include <string>
 //**Op Class**
 Op::Op() : Base(), value(0){}
