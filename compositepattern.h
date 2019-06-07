@@ -175,6 +175,7 @@ class Trunc : public UnaryOperator
 class Paren : public UnaryOperator
 {
     public: 
+        Paren() : UnaryOperator() {};
         Paren(Base* cory) : UnaryOperator(cory){};
         string stringify();
         double evaluate() {return child->evaluate();};
