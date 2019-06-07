@@ -2,7 +2,7 @@
 #define MULT_HPP
 #include "base.hpp"
 using namespace std;
-class Mult : public Base
+class Mult : public Op
 {
  private:
 	Base* L1;

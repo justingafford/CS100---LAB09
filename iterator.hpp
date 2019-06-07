@@ -1,5 +1,8 @@
 #ifndef ITERATOR_H
 #define ITERATOR_H
+#include "compositepattern.hpp"
+#include <stack>
+using namespace std;
 
 class Iterator 
 {
@@ -26,7 +29,7 @@ class Iterator
 class BinaryIterator : public Iterator 
 {
     public:
-        Iterator(Base* ptr) : Iterator(ptr){};
+        BinaryIterator(Base* ptr) : Iterator(ptr){};
         void first();
         void next();
         bool is_done();
@@ -36,7 +39,7 @@ class BinaryIterator : public Iterator
 class UnaryIterator : public Iterator 
 {
     public:
-        Iterator(Base* ptr) : Iterator(ptr){};
+        UnaryIterator(Base* ptr) : Iterator(ptr){};
         void first();
         void next();
         bool is_done();
@@ -46,11 +49,23 @@ class UnaryIterator : public Iterator
 class NullIterator : public Iterator 
 {
     public:
-        Iterator(Base* ptr) : Iterator(ptr){};
+        NullIterator(Base* ptr) : Iterator(ptr){};
         void first();
         void next();
         bool is_done();
         Base* current();
 };
 
+class PreOrderIterator : public Iterator
+{
+	protected:
+		stack<Iterator*> iterators;
+	public:
+		PreOrderIterator(Base* ptr);
+		void first();
+		void next();
+		bool is_done();
+		Base* current();
+};
 #endif
+

@@ -14,6 +14,9 @@ class Op : public Base
         Op(double n);
         double evaluate();
         string stringify(); 
+	Base* get_left();
+        Base* get_right();
+	Iterator* create_iterator();
 };
 
 #endif

@@ -3,7 +3,7 @@
 #include "base.hpp"
 #include <string>
 using namespace std;
-class Add: public Base
+class Add: public Op
 {
   private:
 	Base* L1;
