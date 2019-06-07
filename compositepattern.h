@@ -136,4 +136,48 @@ class Root: public UnaryOperator {
         double evaluate();
 };
 
+class Ceil : public UnaryOperator
+{
+    public: 
+        Ceil() : UnaryOperator() {};
+        Ceil(Base* cory) : UnaryOperator(cory){};
+        double evaluate();
+        string stringify() {};
+};
+
+class Floor : public UnaryOperator
+{
+    public: 
+        Floor() : UnaryOperator() {};
+        Floor(Base* cory) : UnaryOperator(cory){};
+        double evaluate();
+        string stringify() {};
+};
+
+class Abs : public UnaryOperator
+{
+    public: 
+        Abs() : UnaryOperator() {};
+        Abs(Base* cory) : UnaryOperator(cory){};
+        double evaluate();
+        string stringify() {};
+};
+
+class Trunc : public UnaryOperator
+{
+    public: 
+        Trunc() : UnaryOperator() {};
+        Trunc(Base* cory) : UnaryOperator(cory){};
+        string stringify();
+        double evaluate() {return child->evaluate();};
+};
+
+class Paren : public UnaryOperator
+{
+    public: 
+        Paren(Base* cory) : UnaryOperator(cory){};
+        string stringify();
+        double evaluate() {return child->evaluate();};
+};
+
 #endif
