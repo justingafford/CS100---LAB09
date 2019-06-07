@@ -1,6 +1,6 @@
 #include "iterator.hpp"
 
-//BinaryIterator
+BinaryIterator
 void BinaryIterator::first()
 {
     this->curr = this->self_ptr->get_left();
@@ -24,7 +24,7 @@ Base* BinaryIterator::current()
     return this-> curr;
 }
 
-//UnaryIterator
+UnaryIterator
 void UnaryIterator::first()
 {
     this -> curr = this->self_ptr->get_left();
@@ -46,7 +46,7 @@ Base* UnaryIterator::current()
     return this-> curr;
 }
 
-//NullIterator
+NullIterator
 void NullIterator::first()
 {
    return;
