@@ -42,6 +42,16 @@ class Op: public Base {
         Iterator* create_iterator();
 };
 
+class Rand : public Base
+{
+    private:
+        double num;
+    public:
+        Rand();
+        double evaluate();
+        string stringify();
+};
+
 //Composite Base Classes
 class Operator: public Base {
     protected:
